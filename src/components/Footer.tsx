@@ -12,7 +12,7 @@ const Footer = () => {
               <div className="p-2 gradient-primary rounded-lg shadow-glow">
                 <Brain className="h-6 w-6 text-white" />
               </div>
-              <span className="text-xl font-bold text-gradient">CBE Career AI</span>
+              <span className="text-xl font-bold text-primary">CBE Career AI</span>
             </Link>
             <p className="text-muted-foreground mb-4 max-w-md">
               Empowering Kenyan students under the CBE curriculum with AI-powered career guidance 

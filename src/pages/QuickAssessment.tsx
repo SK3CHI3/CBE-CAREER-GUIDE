@@ -111,62 +111,62 @@ const QuickAssessment = () => {
     const recommendations = getCareerRecommendations();
     
     return (
-      <div className="min-h-screen bg-gradient-subtle">
+    <div className="min-h-screen bg-gradient-hero">
         <Header />
-        <div className="pt-16 py-12 px-4">
-          <div className="container mx-auto max-w-4xl">
-            <Card className="shadow-card border-border/50">
-              <CardHeader className="text-center">
-                <div className="mx-auto p-3 gradient-accent rounded-lg shadow-glow w-fit mb-4">
-                  <CheckCircle className="h-8 w-8 text-white" />
+      <div className="pt-16 py-12 px-4">
+        <div className="container mx-auto max-w-4xl">
+          <Card className="shadow-card border-border/50">
+            <CardHeader className="text-center">
+              <div className="mx-auto p-3 gradient-accent rounded-lg shadow-glow w-fit mb-4">
+                <CheckCircle className="h-8 w-8 text-white" />
+              </div>
+              <CardTitle className="text-3xl">Your Career Recommendations</CardTitle>
+              <CardDescription>
+                Based on your responses, here are some career paths that might interest you
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="grid md:grid-cols-3 gap-6">
+                {recommendations.map((career, index) => (
+                  <Card key={index} className="border-primary/20 hover:shadow-soft transition-all">
+                    <CardHeader>
+                      <CardTitle className="text-lg text-primary">{career}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex items-center gap-2 text-success">
+                        <TrendingUp className="h-4 w-4" />
+                        <span className="text-sm">High demand in Kenya</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+              
+              <div className="bg-primary/5 rounded-lg p-6 text-center border border-primary/10">
+                <h3 className="font-semibold mb-2 text-primary">Want More Detailed Guidance?</h3>
+                <p className="text-muted-foreground mb-4">
+                  Create an account for comprehensive career planning with AI counseling, 
+                  performance tracking, and personalized recommendations.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <Link to="/register">
+                    <Button className="gradient-primary text-white shadow-glow">Create Free Account</Button>
+                  </Link>
+                  <Link to="/">
+                    <Button variant="outline" className="border-primary/30">Back to Home</Button>
+                  </Link>
                 </div>
-                <CardTitle className="text-3xl">Your Career Recommendations</CardTitle>
-                <CardDescription>
-                  Based on your responses, here are some career paths that might interest you
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="grid md:grid-cols-3 gap-6">
-                  {recommendations.map((career, index) => (
-                    <Card key={index} className="border-primary/20">
-                      <CardHeader>
-                        <CardTitle className="text-lg">{career}</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="flex items-center gap-2 text-success">
-                          <TrendingUp className="h-4 w-4" />
-                          <span className="text-sm">High demand in Kenya</span>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-                
-                <div className="bg-muted/50 rounded-lg p-6 text-center">
-                  <h3 className="font-semibold mb-2">Want More Detailed Guidance?</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Create an account for comprehensive career planning with AI counseling, 
-                    performance tracking, and personalized recommendations.
-                  </p>
-                  <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                    <Link to="/register">
-                      <Button className="gradient-primary">Create Free Account</Button>
-                    </Link>
-                    <Link to="/">
-                      <Button variant="outline">Back to Home</Button>
-                    </Link>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
+      </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-subtle">
+    <div className="min-h-screen bg-gradient-hero">
       <Header />
       <div className="pt-16 py-12 px-4">
         <div className="container mx-auto max-w-2xl">

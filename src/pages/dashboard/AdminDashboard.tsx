@@ -84,7 +84,7 @@ const AdminDashboard = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-subtle">
+    <div className="min-h-screen bg-gradient-hero">
       {/* Header */}
       <header className="bg-background/80 backdrop-blur-md border-b border-border">
         <div className="container mx-auto px-4">

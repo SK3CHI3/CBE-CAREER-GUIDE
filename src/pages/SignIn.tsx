@@ -42,7 +42,7 @@ const SignIn = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-subtle py-12 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-hero py-12 px-4">
       <div className="w-full max-w-lg">
         {/* Back to Home */}
         <Link to="/" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary mb-8 transition-smooth">

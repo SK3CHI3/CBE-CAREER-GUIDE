@@ -2,60 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
-/* CBE Kenya AI Education Counselor Design System - Futuristic & Modern */
+/* CBE Kenya AI Education Counselor Design System - Fresh & Modern Light Theme */
 
 @layer base {
   :root {
-    /* Base colors */
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
+    /* Base colors - Clean white backgrounds */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
     
     /* Card colors */
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
     
     /* Popover colors */
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
     
-    /* Primary - Deep Tech Blue */
-    --primary: 219 100% 27%;
+    /* Primary - Beautiful Education Green */
+    --primary: 142 76% 36%;
     --primary-foreground: 0 0% 98%;
-    --primary-glow: 219 100% 35%;
+    --primary-glow: 142 76% 45%;
     
-    /* Secondary - AI Purple */
-    --secondary: 262 80% 50%;
-    --secondary-foreground: 0 0% 98%;
+    /* Secondary - Soft Sage Green */
+    --secondary: 148 20% 85%;
+    --secondary-foreground: 142 76% 25%;
     
-    /* Muted colors */
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    /* Muted colors - Light grays */
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
     
-    /* Accent - Vibrant Orange */
-    --accent: 20 90% 55%;
+    /* Accent - Warm Emerald */
+    --accent: 158 64% 52%;
     --accent-foreground: 0 0% 98%;
     
-    /* Success - Kenyan Green */
+    /* Success - Fresh Green */
     --success: 142 76% 36%;
     --success-foreground: 0 0% 98%;
     
     /* Destructive */
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 210 40% 98%;
     
-    /* Border and input */
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 262 80% 50%;
+    /* Border and input - Light borders */
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 142 76% 36%;
     
-    /* Custom gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(219 100% 27%) 0%, hsl(262 80% 50%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(20 90% 55%) 0%, hsl(262 80% 50%) 100%);
-    --gradient-subtle: linear-gradient(180deg, hsl(240 10% 3.9%) 0%, hsl(240 3.7% 15.9%) 100%);
+    /* Custom gradients - Beautiful greens */
+    --gradient-primary: linear-gradient(135deg, hsl(142 76% 36%) 0%, hsl(158 64% 52%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(158 64% 52%) 0%, hsl(142 76% 45%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(148 30% 98%) 0%, hsl(148 20% 96%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(148 30% 98%) 0%, hsl(142 30% 95%) 100%);
     
-    /* Shadows */
-    --shadow-glow: 0 0 30px hsl(262 80% 50% / 0.3);
-    --shadow-card: 0 8px 32px hsl(240 10% 3.9% / 0.12);
+    /* Shadows - Soft and elegant */
+    --shadow-glow: 0 0 30px hsl(142 76% 36% / 0.2);
+    --shadow-card: 0 8px 32px hsl(142 30% 90% / 0.3);
+    --shadow-soft: 0 4px 16px hsl(142 30% 90% / 0.2);
     
     /* Animation timings */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -89,6 +91,7 @@
   body {
     @apply bg-background text-foreground;
     background: var(--gradient-subtle);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
 }
 
@@ -107,6 +110,14 @@
   
   .shadow-card {
     box-shadow: var(--shadow-card);
+  }
+  
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .gradient-hero {
+    background: var(--gradient-hero);
   }
   
   .transition-smooth {
