@@ -6,25 +6,62 @@ import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Brain, User, Users, Shield, ArrowLeft } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/hooks/useAuth';
+import { UserRole } from '@/lib/database.types';
 
 const Register = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const navigate = useNavigate();
+  const { signUp } = useAuth();
 
-  const handleSubmit = async (e: React.FormEvent, userType: string) => {
+  const handleSubmit = async (e: React.FormEvent, userType: UserRole) => {
     e.preventDefault();
     setIsLoading(true);
-    
-    // Simulate registration process
-    setTimeout(() => {
+
+    const formData = new FormData(e.target as HTMLFormElement);
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
+    const firstName = formData.get('firstName') as string;
+    const lastName = formData.get('lastName') as string;
+
+    try {
+      const userData = {
+        first_name: firstName,
+        last_name: lastName,
+        role: userType,
+      };
+
+      const { error } = await signUp(email, password, userData);
+
+      if (error) {
+        toast({
+          title: "Registration Failed",
+          description: error.message,
+          variant: "destructive",
+        });
+        return;
+      }
+
       toast({
         title: "Registration Successful!",
-        description: `Your ${userType} account has been created. Please check your email to verify your account.`,
+        description: "Please check your email to verify your account before signing in.",
       });
+
+      // Redirect to sign in page
+      navigate('/signin');
+
+    } catch (error) {
+      toast({
+        title: "Registration Failed",
+        description: "An unexpected error occurred. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
       setIsLoading(false);
-    }, 2000);
+    }
   };
 
   return (

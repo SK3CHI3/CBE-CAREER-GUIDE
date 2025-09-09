@@ -4,18 +4,19 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { 
-  Brain, 
-  BookOpen, 
-  TrendingUp, 
-  MessageCircle, 
-  Target, 
+import {
+  Brain,
+  BookOpen,
+  TrendingUp,
+  MessageCircle,
+  Target,
   Award,
   BarChart3,
   Calendar,
   User,
   LogOut,
-  Settings
+  Settings,
+  Bot
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -252,10 +253,12 @@ const StudentDashboard = () => {
                   <BookOpen className="mr-2 h-4 w-4" />
                   Take Subject Assessment
                 </Button>
-                <Button variant="outline" className="w-full justify-start" size="sm">
-                  <MessageCircle className="mr-2 h-4 w-4" />
-                  Chat with AI Counselor
-                </Button>
+                <Link to="/ai-counselor">
+                  <Button variant="outline" className="w-full justify-start" size="sm">
+                    <Bot className="mr-2 h-4 w-4" />
+                    AI Career Counselor
+                  </Button>
+                </Link>
                 <Button variant="outline" className="w-full justify-start" size="sm">
                   <Calendar className="mr-2 h-4 w-4" />
                   Set Learning Goals

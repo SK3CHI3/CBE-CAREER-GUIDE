@@ -7,38 +7,50 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Brain, User, Users, Shield, ArrowLeft } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/hooks/useAuth';
 
 const SignIn = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
+  const { signIn } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent, userType: string) => {
     e.preventDefault();
     setIsLoading(true);
-    
-    // Simulate login process
-    setTimeout(() => {
+
+    const formData = new FormData(e.target as HTMLFormElement);
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
+
+    try {
+      const { error } = await signIn(email, password);
+
+      if (error) {
+        toast({
+          title: "Sign In Failed",
+          description: error.message,
+          variant: "destructive",
+        });
+        return;
+      }
+
       toast({
         title: "Welcome back!",
-        description: `Successfully signed in as ${userType}.`,
+        description: "Successfully signed in.",
       });
-      
-      // Navigate to respective dashboard
-      switch (userType) {
-        case 'student':
-          navigate('/dashboard/student');
-          break;
-        case 'teacher':
-          navigate('/dashboard/teacher');
-          break;
-        case 'admin':
-          navigate('/dashboard/admin');
-          break;
-      }
-      
+
+      // Navigation will be handled by the AuthContext based on user role
+
+    } catch (error) {
+      toast({
+        title: "Sign In Failed",
+        description: "An unexpected error occurred. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
       setIsLoading(false);
-    }, 1500);
+    }
   };
 
   return (
@@ -83,26 +95,26 @@ const SignIn = () => {
                 <form onSubmit={(e) => handleSubmit(e, 'student')} className="space-y-4">
                   <div>
                     <Label htmlFor="studentEmail">Email</Label>
-                    <Input 
-                      id="studentEmail" 
-                      type="email" 
-                      placeholder="your.email@example.com" 
-                      defaultValue="demo.student@school.co.ke"
-                      required 
+                    <Input
+                      id="studentEmail"
+                      name="email"
+                      type="email"
+                      placeholder="your.email@example.com"
+                      required
                     />
                   </div>
-                  
+
                   <div>
                     <Label htmlFor="studentPassword">Password</Label>
-                    <Input 
-                      id="studentPassword" 
-                      type="password" 
+                    <Input
+                      id="studentPassword"
+                      name="password"
+                      type="password"
                       placeholder="••••••••"
-                      defaultValue="demo123"
-                      required 
+                      required
                     />
                   </div>
-                  
+
                   <Button type="submit" className="w-full gradient-primary" disabled={isLoading}>
                     {isLoading ? "Signing In..." : "Sign In as Student"}
                   </Button>
@@ -114,26 +126,26 @@ const SignIn = () => {
                 <form onSubmit={(e) => handleSubmit(e, 'teacher')} className="space-y-4">
                   <div>
                     <Label htmlFor="teacherEmail">Email</Label>
-                    <Input 
-                      id="teacherEmail" 
-                      type="email" 
+                    <Input
+                      id="teacherEmail"
+                      name="email"
+                      type="email"
                       placeholder="teacher@school.co.ke"
-                      defaultValue="demo.teacher@school.co.ke"
-                      required 
+                      required
                     />
                   </div>
-                  
+
                   <div>
                     <Label htmlFor="teacherPassword">Password</Label>
-                    <Input 
-                      id="teacherPassword" 
-                      type="password" 
+                    <Input
+                      id="teacherPassword"
+                      name="password"
+                      type="password"
                       placeholder="••••••••"
-                      defaultValue="demo123"
-                      required 
+                      required
                     />
                   </div>
-                  
+
                   <Button type="submit" className="w-full gradient-primary" disabled={isLoading}>
                     {isLoading ? "Signing In..." : "Sign In as Teacher"}
                   </Button>
@@ -145,26 +157,26 @@ const SignIn = () => {
                 <form onSubmit={(e) => handleSubmit(e, 'admin')} className="space-y-4">
                   <div>
                     <Label htmlFor="adminEmail">Email</Label>
-                    <Input 
-                      id="adminEmail" 
-                      type="email" 
+                    <Input
+                      id="adminEmail"
+                      name="email"
+                      type="email"
                       placeholder="admin@organization.co.ke"
-                      defaultValue="demo.admin@education.go.ke"
-                      required 
+                      required
                     />
                   </div>
-                  
+
                   <div>
                     <Label htmlFor="adminPassword">Password</Label>
-                    <Input 
-                      id="adminPassword" 
-                      type="password" 
+                    <Input
+                      id="adminPassword"
+                      name="password"
+                      type="password"
                       placeholder="••••••••"
-                      defaultValue="demo123"
-                      required 
+                      required
                     />
                   </div>
-                  
+
                   <Button type="submit" className="w-full gradient-primary" disabled={isLoading}>
                     {isLoading ? "Signing In..." : "Sign In as Admin"}
                   </Button>
