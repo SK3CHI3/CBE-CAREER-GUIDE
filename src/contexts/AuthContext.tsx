@@ -1,6 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { User, Session, AuthError } from '@supabase/supabase-js'
 import { supabase } from '@/integrations/supabase/client'
+
+// Type assertion for database operations
+const typedSupabase = supabase as any
 import { Database } from '@/lib/database.types'
 
 type Profile = Database['public']['Tables']['profiles']['Row']
@@ -176,7 +179,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     if (!user) return { error: new Error('No user logged in') }
 
     try {
-      const { error } = (await supabase
+      const { error } = (await typedSupabase
         .from('profiles')
         .update({ ...updates, updated_at: new Date().toISOString() })
         .eq('id', user.id)) as any
