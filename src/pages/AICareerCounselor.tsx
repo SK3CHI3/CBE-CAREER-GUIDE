@@ -24,11 +24,11 @@ const AICareerCounselor: React.FC = () => {
   const [assessmentData, setAssessmentData] = useState<CareerAssessmentData | null>(null)
   const [recommendations, setRecommendations] = useState<any[]>([])
 
-  // Build assessment data from user profile
+  // Build assessment data from user profile and student data
   useEffect(() => {
     if (profile) {
       const data: CareerAssessmentData = {
-        gradeLevel: profile.grade_level || undefined,
+        gradeLevel: undefined, // Would come from student record
         interests: [], // Would come from user's saved interests
         favoriteSubjects: [], // Would come from performance data
         strengths: [], // Would come from assessments
@@ -95,7 +95,7 @@ const AICareerCounselor: React.FC = () => {
                 <div>
                   <p className="text-sm text-muted-foreground">Grade Level</p>
                   <p className="font-medium">
-                    {profile.grade_level ? `Grade ${profile.grade_level}` : 'Not specified'}
+                    Secondary School Student
                   </p>
                 </div>
               </div>
@@ -103,14 +103,14 @@ const AICareerCounselor: React.FC = () => {
                 <BookOpen className="h-5 w-5 text-primary" />
                 <div>
                   <p className="text-sm text-muted-foreground">School</p>
-                  <p className="font-medium">{profile.school_name || 'Not specified'}</p>
+                  <p className="font-medium">Not specified</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
                 <Target className="h-5 w-5 text-primary" />
                 <div>
                   <p className="text-sm text-muted-foreground">Career Interest</p>
-                  <p className="font-medium">{profile.career_interest || 'Exploring options'}</p>
+                  <p className="font-medium">Exploring options</p>
                 </div>
               </div>
             </div>
@@ -251,7 +251,8 @@ const AICareerCounselor: React.FC = () => {
                 </p>
                 <Button onClick={() => {
                   // Switch to chat tab
-                  document.querySelector('[value="chat"]')?.click()
+                  const chatTab = document.querySelector('[value="chat"]') as HTMLElement
+                  chatTab?.click()
                 }}>
                   Start Chatting
                 </Button>
